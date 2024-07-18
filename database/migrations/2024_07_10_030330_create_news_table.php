@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->unsignedBigInteger('author');
-            $table->foreign('author')->references('id')->on('users');
             $table->boolean('status')->default('0');
             $table->string('image');
             $table->timestamps();
@@ -26,8 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('news', function (Blueprint $table) {
-            $table->dropForeign(['author']);
-            $table->dropColumn('author');
+            // 
         });
     }
 };
