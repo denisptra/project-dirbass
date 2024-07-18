@@ -27,15 +27,6 @@
                     <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
                         name="image">
                 </div>
-                <div class="form-group">
-                    <label for="author">Author</label>
-                    <select class="form-control @error('author') is-invalid @enderror" id="author" name="author">
-                        <option value="">Select Author</option>
-                        @foreach($users as $user)
-                        <option value="{{ $user->name }}" {{ old('author')==$user->id ? 'selected' : '' }}>{{ $user->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
                 <button type="submit" class="btn btn-primary mr-2">Save</button>
             </form>
         </div>
