@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class News extends Model
+class Creation extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'title',
-        'content',
-        'status',
+        'description',
         'image',
+        'author_id',
     ];
 
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class, 'author');
+        return $this->belongsTo(User::class, 'author_id'); // Sesuaikan dengan kolom foreign key
     }
 }

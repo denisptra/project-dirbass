@@ -114,7 +114,7 @@
                         </li>
                     </ul>
                 </div>
-               
+
                 <div class="add-items d-flex mb-0 mt-2">
                     <input type="text" class="form-control todo-list-input" placeholder="Add new task"
                         id="new-task-input">
@@ -124,8 +124,11 @@
                 </div>
             </div>
         </div>
-        <script>
-            const button = document.getElementById('dropdownMenuDate2');
+    </div>
+</div>
+
+<script>
+    const button = document.getElementById('dropdownMenuDate2');
 
     function updateDate() {
         const date = new Date();
@@ -146,69 +149,6 @@
     // Update the date every 1 second
     setInterval(updateDate, 1000);
 
-        </script>
-         <script>
-            const todoList = document.getElementById('todo-list');
-          
-            // Load tasks from local storage when the page loads
-            loadTasksFromLocalStorage();
-          
-            function loadTasksFromLocalStorage() {
-              const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-              tasks.forEach((task) => {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `
-                  <div class="form-check form-check-flat">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox" ${task.completed ? 'checked' : ''}>
-                      ${task.text}
-                      <i class="input-helper"></i>
-                    </label>
-                  </div>
-                  <i class="remove ti-close"></i>
-                `;
-                if (task.completed) {
-                  listItem.classList.add('completed');
-                }
-                todoList.appendChild(listItem);
-              });
-            }
-          
-            // Add event listener to the remove button
-            todoList.addEventListener('click', (e) => {
-              if (e.target.classList.contains('remove')) {
-                const listItem = e.target.parentNode;
-                const taskText = listItem.querySelector('.form-check-label').textContent.trim();
-                todoList.removeChild(listItem);
-                removeTaskFromLocalStorage(taskText);
-              } else if (e.target.classList.contains('checkbox')) {
-                const listItem = e.target.closest('li');
-                const taskText = listItem.querySelector('.form-check-label').textContent.trim();
-                const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-                const index = tasks.findIndex((task) => task.text === taskText);
-                if (index !== -1) {
-                  tasks[index].completed = !tasks[index].completed;
-                  localStorage.setItem('tasks', JSON.stringify(tasks));
-                }
-                listItem.classList.toggle('completed');
-              }
-            });
-          
-            function removeTaskFromLocalStorage(taskText) {
-              const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-              const index = tasks.findIndex((task) => task.text === taskText);
-              if (index !== -1) {
-                tasks.splice(index, 1);
-              }
-              localStorage.setItem('tasks', JSON.stringify(tasks));
-            }
-          
-            // Initialize tasks in local storage
-            const initialTasks = [
-              { text: 'Berjuang Juga Butuh Makan', completed: false },
-              { text: 'Aku Tidur Dulu ya', completed: false }
-            ];
-            localStorage.setItem('tasks', JSON.stringify(initialTasks));
-        </script>
+</script>
 
-        @endsection
+@endsection

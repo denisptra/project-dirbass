@@ -10,7 +10,6 @@
             <h6 class="card-description mt-3">
                 List of males
             </h6>
-
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -29,9 +28,8 @@
                         @foreach ($males as $male)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td><img src="{{ asset('dist') }}/images/faces/face1.jpg" class="img-lg"
-                                    alt="profile image">
-                            </td>
+                            <td><img src="{{ asset('images/male/' . $male->image) }}" class="img-lg"
+                                    alt="profile image"></td>
                             <td>{{ $male->user->name }}</td>
                             <td>{{ $male->number_tlp }}</td>
                             <td>{{ $male->city }}</td>
@@ -41,29 +39,17 @@
                                         class="fa fa-eye"></i></a>
                                 <a href="{{ route('male.edit', $male->id) }}" class="btn btn-warning btn-sm"><i
                                         class="fa fa-edit text-white"></i></a>
-                                <form action="{{ route('male.destroy', $male->id) }}" method="POST" class="d-inline"
-                                    id="delete-form-{{ $male->id }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-danger btn-sm"
-                                        onclick="confirmDelete('{{ $male->id }}')">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
+                                <a href="{{ route('male.destroy', $male->id) }}" class="btn btn-danger btn-sm"
+                                    data-confirm-delete="true"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
+            <small class="text-muted">(Note: You can only fill in one male data for your account)</small>
         </div>
     </div>
 </div>
-<script>
-    function confirmDelete(id) {
-        if (confirm('Are you sure you want to delete this item?')) {
-            document.getElementById('delete-form-' + id).submit();
-        }
-    }
-</script>
+
 @endsection

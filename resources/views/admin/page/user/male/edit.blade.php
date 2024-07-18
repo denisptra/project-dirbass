@@ -14,11 +14,6 @@
                 @method('put')
                 @csrf
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Name" name="name"
-                        value="{{ old('name', $user->name) }}">
-                </div>
-                <div class="form-group">
                     <label for="number">Phone</label>
                     <input type="number" class="form-control" id="number" placeholder="Number Phone" name="number_tlp"
                         value="{{ old('number_tlp', $male->number_tlp) }}">
@@ -32,6 +27,14 @@
                     <label for="motivation">Motivation</label>
                     <input type="text" class="form-control" id="motivation" placeholder="Motivation" name="motivation"
                         value="{{ old('motivation', $male->motivation) }}">
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" class="form-control" id="image" placeholder="Image" name="image">
+                    @if($male->image)
+                    <img src="{{ asset('images/male/'. $male->image) }}" class="img-lg mt-3" alt="Current Image"
+                        width="100" id="preview-image">
+                    @endif
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">Save</button>
             </form>

@@ -43,9 +43,6 @@
                                 <option value="superadmin" {{ old('role', $account->role) == 'superadmin' ? 'selected' : '' }}>Super Admin</option>
                                 <option value="user" {{ old('role', $account->role) == 'user' ? 'selected' : '' }}>User</option>
                             </select>
-                            @error('role')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                 </div>

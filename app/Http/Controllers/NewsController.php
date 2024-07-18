@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 
 class NewsController extends Controller
@@ -20,6 +21,9 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::orderBy('created_at', 'desc')->get();
+        $title = 'Delete News   !';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         return view('admin.page.news.index', compact('news'));
     }
     /**
@@ -38,29 +42,34 @@ class NewsController extends Controller
     {
         // Validasi data input
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|min:10',
             'content' => 'required',
-            'author' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         // Membuat instansi objek News
         $news = new News();
 
         // Mengisi atribut-atribut dari request
-        $news->image = $request->image;
         $news->title = $request->title;
         $news->content = $request->content;
-        $news->author = $request->author;
 
-        // Set created_at to current timestamp
-        $news->created_at = now();
+        // Store the image file
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images/news', $imageName);
+            $news->image = $imageName;
+        }
 
         // Menyimpan data ke dalam database
         $news->save();
 
         // Redirect ke halaman indeks news dengan pesan sukses
-        return redirect()->route('news.index')->with('success', 'Data Berhasil Disimpan!');
+        return redirect()->route('news.index')->with('sweetalert', 'News Created Successfully!');
     }
+
+
 
 
     /**
@@ -68,10 +77,12 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $news = News::with('user')->find($id);
-
+        // Mengambil data news berdasarkan id dan relasi user
+        $news = News::with('user')->findOrFail($id);
         return view('admin.page.news.show', compact('news'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -85,31 +96,44 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, $id)
     {
         // Validasi data input
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|min:10',
             'content' => 'required',
-            'author' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        // Mengambil data news berdasarkan id
+        $news = News::findOrFail($id);
 
         // Update atribut-atribut dari request
         $news->title = $request->title;
         $news->content = $request->content;
-        $news->author = $request->author;
+
+
 
         // Update image if new image is uploaded
         if ($request->hasFile('image')) {
-            $news->image = $request->image->store('public/news');
+            // Hapus gambar lama jika ada
+            if ($news->image) {
+                Storage::delete('public/images/news/' . $news->image);
+            }
+            // Upload gambar baru
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images/news', $imageName);
+            $news->image = $imageName;
         }
 
         // Save the updated news item
         $news->save();
 
-        // Redirect to the news index page
-        return redirect()->route('news.index');
+        // Redirect to the news index page with a success message
+        return redirect()->route('news.index')->with('success', 'News Updated Successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -122,7 +146,7 @@ class NewsController extends Controller
         $news->delete();
 
         //redirect to index
-        return redirect()->route('news.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('news.index')->with(['success' => 'News Deleted Successfully!']);
     }
 
     public function toggleStatus(Request $request, $id)
@@ -134,12 +158,12 @@ class NewsController extends Controller
         );
         return redirect()->back();
     }
-    // public function updateStatus(Request $request, $id)
-    // {
-    //     $news = News::find($id);
-    //     $news->status = $request->input('status');
-    //     $news->save();
+    public function updateStatus(Request $request, $id)
+    {
+        $news = News::findOrFail($id);
+        $news->status = $request->has('status') ? 1 : 0;
+        $news->save();
 
-    //     return redirect()->back();
-    // }
+        return redirect()->route('news.index')->with('success', 'Status Updated Successfully!');
+    }
 }

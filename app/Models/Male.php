@@ -22,5 +22,4 @@ class Male extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
 }

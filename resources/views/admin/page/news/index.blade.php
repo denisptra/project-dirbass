@@ -25,113 +25,105 @@
                     </thead>
                     <tbody>
                         @php $no = 1; @endphp
-                        @foreach ($news as $news)
+                        @foreach ($news as $item)
                         <tr>
                             <td>{{ $no++ }}.</td>
-                            <td><img src="{{ asset('dist') }}/images/faces/face1.jpg" class="img-lg"
-                                    alt="profile image">
-                            </td>
-                            <td>{{ $news->title }}</td>
-                            <td>{{ substr($news->content, 0, 50) }}...</td>
+                            <td><img src="{{ asset('storage/images/news/' . $item->image) }}" class="img-lg"
+                                    alt="profile image"></td>
+                            <td>{{ $item->title }}</td>
+                            <td>{{ substr($item->content, 0, 50) }}...</td>
                             <td>
-                                <form action="{{ route('news.status', $news->id) }}" method="POST">
+                                <form action="{{ route('news.updateStatus', $item->id) }}" method="POST">
                                     @csrf
                                     @method('put')
-                                    @if ($news->status == "1")
-                                    <input type="hidden" name="status" value="1">
-                                    @else
-                                    <input type="hidden" name="status" value="0">
-                                    @endif
-                                    <div class="toggle-button" onclick="toggleStatus({{ $news->id }})">
-                                        <div class="toggle-button-slider {{ $news->status ? 'active' : '' }}"></div>
-                                        <div class="tooltip">{{ $news->status ? 'Active' : 'Inactive' }}</div>
+                                    <div class="checkbox-apple">
+                                        <input class="yep" id="check-apple-{{ $item->id }}" type="checkbox"
+                                            name="status" {{ $item->status ? 'checked' : '' }}
+                                        onchange="this.form.submit()">
+                                        <label for="check-apple-{{ $item->id }}"></label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-sm">Save</button>
-                                    
                                 </form>
                             </td>
                             <td>
-                                <a href="{{ route('news.show', $news->id) }}" class="btn btn-primary btn-sm">
+                                <a href="{{ route('news.show', $item->id) }}" class="btn btn-primary btn-sm">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a href="{{ route('news.edit', $news->id) }}" class="btn btn-warning btn-sm text-white">
+                                <a href="{{ route('news.edit', $item->id) }}" class="btn btn-warning btn-sm text-white">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <form action="{{ route('news.destroy', $news->id) }}" method="POST" class="d-inline"
-                                    id="delete-form-{{ $news->id }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Are you sure you want to delete this news?')">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
+                                <a href="{{ route('news.destroy', $item->id) }}" class="btn btn-danger btn-sm"
+                                    data-confirm-delete="true"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
+
                 </table>
             </div>
         </div>
     </div>
 </div>
-{{-- <style>
-    .toggle-button {
+<style>
+    .checkbox-apple {
         position: relative;
-        width: 60px;
-        height: 30px;
-        background-color: #ccc;
-        border-radius: 50px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        padding: 0 5px;
-        transition: background-color 0.3s;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .toggle-button.active {
-        background-color: #4caf50;
-    }
-
-    .toggle-button-slider {
-        position: absolute;
-        width: 25px;
+        width: 50px;
         height: 25px;
-        background-color: #fff;
-        border-radius: 80%;
-        transition: transform 0.3s;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 
-    .toggle-button.active .toggle-button-slider {
-        transform: translateX(35px);
-    }
-
-    .tooltip {
+    .checkbox-apple label {
         position: absolute;
-        top: -35px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #333;
-        color: #fff;
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: bold;
-        opacity: 0;
-        transition: opacity 0.3s, background-color 0.3s;
-        pointer-events: none;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 25px;
+        border-radius: 50px;
+        background: linear-gradient(to bottom, #b3b3b3, #e6e6e6);
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
 
-    .toggle-button:hover .tooltip {
-        opacity: 1;
+    .checkbox-apple label:after {
+        content: '';
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        width: 23px;
+        height: 23px;
+        border-radius: 50%;
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
     }
 
-    .toggle-button.active .tooltip {
-        background-color: #4caf50;
+    .checkbox-apple input[type="checkbox"]:checked+label {
+        background: linear-gradient(to bottom, #4cd964, #5de24e);
     }
-</style> --}}
+
+    .checkbox-apple input[type="checkbox"]:checked+label:after {
+        transform: translateX(25px);
+    }
+
+    .checkbox-apple label:hover {
+        background: linear-gradient(to bottom, #b3b3b3, #e6e6e6);
+    }
+
+    .checkbox-apple label:hover:after {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .yep {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 25px;
+    }
+</style>
 
 <script>
     function toggleStatus(newsId) {

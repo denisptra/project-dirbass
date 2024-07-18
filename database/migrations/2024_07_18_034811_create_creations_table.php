@@ -11,21 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('creations', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('content');
-            $table->boolean('status')->default('0');
+            $table->text('description');
             $table->string('image');
+            $table->unsignedBigInteger('author_id'); // Kolom foreign key
+
             $table->timestamps();
+
+            // Foreign key constraint
+            $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->dropForeign(['author']);
-            $table->dropColumn('author');
-        });
+        Schema::dropIfExists('creations');
     }
 };

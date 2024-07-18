@@ -8,6 +8,10 @@ use App\Models\Male;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
+
+
+use function Laravel\Prompts\error;
 
 class UserController extends Controller
 {
@@ -20,6 +24,11 @@ class UserController extends Controller
     {
         $accounts = User::latest()->get();
         $roles = ['admin', 'superadmin', 'user']; // or retrieve from database or model
+
+        $title = 'Delete Account!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+
         return view('admin.page.user.account.index', compact('accounts', 'roles'));
     }
     public function create()
@@ -48,7 +57,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->save();
 
-        return redirect()->route('account.index')->with('success', 'Account created successfully!');
+        return redirect()->route('account.index')->with('success', 'Account Created Successfully!');
     }
 
     /**
@@ -123,6 +132,13 @@ class UserController extends Controller
         if (!$user) {
             return redirect()->back()->with('error', 'User not found.');
         }
+
+        // Check if the user has any related data in the Male table
+        $male = Male::where('user_id', $id)->first();
+        if ($male) {
+            return redirect()->back()->with('warning', 'The account cannot be deleted as it is still linked to existing Male data.');
+        }
+
 
         $user->delete();
 
