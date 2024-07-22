@@ -28,8 +28,13 @@
                         <tr>
                             <td>{{ $no++ }}</td>
                             <td><img src="{{ asset('storage/' . $creation->image) }}" alt="" width="100"></td>
+<<<<<<< HEAD
                             <td>{{ substr($creation->title, 0, 20) }}...</td>
                             <td>{{ substr($creation->description, 0, 40) }}...</td>
+=======
+                            <td>{{ $creation->title }}</td>
+                            <td>{{ $creation->description }}</td>
+>>>>>>> 4191099512725c1eff483cca40227491f911845b
                             <td>{{ $creation->author ? $creation->author->name : 'No Author' }}</td> <!-- Menampilkan nama author -->
                             <td>
                                 <a href="{{ route('creation.show', $creation->id) }}" class="btn btn-primary btn-sm">

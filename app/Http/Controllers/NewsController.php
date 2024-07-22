@@ -6,6 +6,8 @@ use App\Models\News;
 use Illuminate\Http\Request;
 
 
+
+
 class NewsController extends Controller
 {
     /**
@@ -13,9 +15,11 @@ class NewsController extends Controller
      */
     public function index()
     {
+
         $news = News::orderBy('created_at')->first();
         $newss = News::all();
         return view('user.page.news.index', compact('news', 'newss'));
+
 
     }
 
@@ -34,7 +38,10 @@ class NewsController extends Controller
     {
 
         //
+
     }
+
+
 
 
     /**
@@ -44,6 +51,7 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
         return view('user.page.news.show', compact('news'));
+
 
     }
 
@@ -61,9 +69,11 @@ class NewsController extends Controller
      * Update the specified resource in storage.
      */
 
+
     public function update(Request $request, string $id)
     {
         //
+
 
     }
 
@@ -77,4 +87,3 @@ class NewsController extends Controller
         //
     }
 }
-

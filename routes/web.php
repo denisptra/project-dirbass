@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
+
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
@@ -37,6 +38,9 @@ Route::get('/member/{id}', [MemberController::class, 'show'])->name('member.show
 
 // Route::get('/news-page', [NewsPageController::class, 'index']);
 
+
+Route::get('/news-page', [NewsPageController::class, 'index']);
+
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth', 'verified')->name('verification.notice');
@@ -55,10 +59,12 @@ Route::middleware('auth', 'role:admin,superadmin', 'verified')->group(function (
 
     Route::resource('/user/male', \App\Http\Controllers\MaleController::class);
 
+
     Route::resource('/news-page', \App\Http\Controllers\NewsPageController::class);
     Route::resource('/creation', \App\Http\Controllers\CreationController::class);
 
     Route::put('news-page/update-status/{id}', [NewsPageController::class, 'updateStatus'])->name('news-page.updateStatus');
+
 
 });
 
