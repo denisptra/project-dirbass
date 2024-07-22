@@ -18,7 +18,7 @@ class NewsFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(20),
-            'content' => $this->faker->paragraph(50),
+            'content' => $this->faker->words(100, true),
             'status' => false,
             'image' => 'default-image.jpg',
             // 'created_at' => now(),

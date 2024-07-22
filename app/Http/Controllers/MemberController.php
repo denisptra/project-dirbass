@@ -34,9 +34,11 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Member $member)
+    public function show($id)
     {
-        //
+        $member = Member::findOrFail($id);
+        return view('user.page.member.show', compact('member'));
+
     }
 
     /**

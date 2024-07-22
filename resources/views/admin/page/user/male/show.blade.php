@@ -15,7 +15,8 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="text-center">
-                        <img src="{{ asset('dist') }}/images/faces/face1.jpg" class="img-lg my-4" alt="profile image">
+                        <img src="{{ asset('images/male/' . $male->image) }}" class="img-lg mb-3"
+                            alt="profile image" style="height: 13%;">
                         <h4>{{ $user->name }}</h4>
                     </div>
                 </div>

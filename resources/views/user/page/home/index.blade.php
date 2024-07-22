@@ -84,19 +84,19 @@
           texts.</p>
       </div>
     </div>
-    <div class="row">
-      @foreach ($news->slice(0,4) as $new)
-        <div class="bro col-md-3 mb-4">
-          <a href="" class="card shadow">
-            <img src="{{ asset('diet') }}/images/img-school-1-min.jpg" alt="Image" class="card-img-top" style="height:200px; object-fit: cover;">
-            <div class="card-body">
-              <h3>{{ Str::limit($new->title, 27) }}</h3>
-              <p>{{ Str::limit($new->content, 50) }}</p>
-            </div>
-          </a>
-        </div>
-      @endforeach
-    </div>
+      <div class="row">
+        @foreach ($news->slice(0,4) as $new)
+          <div class="bro col-md-3 mb-4">
+            <a href="{{ route('news.show', $new->id) }}" class="card shadow" style="height: 400px">
+              <img src="{{ asset('storage/images/news/' . $new->image) }}" alt="Image" class="card-img-top" style="height:200px; object-fit: cover;">
+              <div class="card-body">
+                <h3>{{ Str::limit($new->title, 27) }}</h3>
+                <p>{{ Str::limit($new->content, 50) }}</p>
+              </div>
+            </a>
+          </div> 
+        @endforeach
+      </div>
   </div> <!-- /.container -->
 </div> 
 @endsection
@@ -111,19 +111,20 @@
           texts.</p>
       </div>
     </div>
-    <div class="row">
-      @foreach ($news->slice(0,4) as $new)
-        <div class="bro col-md-3 mb-4">
-          <a href="" class="card shadow">
-            <img src="{{ asset('diet') }}/images/image/nikko.jpeg" alt="Image" class="card-img-top" style="height:200px; object-fit: cover;">
-            <div class="card-body">
-              <h3>{{ Str::limit($new->title, 27) }}</h3>
-              <p>{{ Str::limit($new->content, 50) }}</p>
-            </div>
-          </a>
-        </div>
-      @endforeach
-    </div>
+      <div class="row">
+        @foreach ($creation->slice(0,4) as $new)
+          <div class="bro col-md-3 mb-4">
+            <a href="{{ route('karya.show', $new->id) }}" class="card shadow" style="height: 420px">
+              {{-- <img src="{{ asset('storage/images/creation/' . $new->image) }}" alt="Image" class="card-img-top" style="height:200px; object-fit: cover;"> --}}
+              <img src="https://picsum.photos/200" alt="Image" class="card-img-top" style="height:200px; object-fit: cover;">
+              <div class="card-body">
+                <h3>{{ Str::limit($new->title, 27) }}</h3>
+                <p class="mt2">{{ Str::limit($new->description, 50) }}</p>
+              </div>
+            </a>
+          </div>
+        @endforeach
+      </div>
   </div>
 </div>
 @endsection

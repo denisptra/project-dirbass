@@ -10,17 +10,15 @@
     <link rel="stylesheet" href="{{ asset('dist') }}/vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="{{ asset('dist') }}/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="{{ asset('dist') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="{{ asset('dist') }}/vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('dist') }}/js/select.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('dist') }}/css/vertical-layout-light/style.css">
     <link rel="shortcut icon" href="{{ asset('dist') }}/images/db-rm.png" />
     <link rel="stylesheet" href="{{ asset('dist') }}/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-</head>
-
 <body>
+    @include('sweetalert::alert')
+
     <div class="container-scroller">
-        <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row fixed">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 <a class="navbar-brand brand-logo mr-5" href="{{ route('welcome') }}"><img
@@ -99,13 +97,18 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" id="profileDropdown">
                             <div class="row pt-2 ">
-                                <img src="{{ asset('dist') }}/images/faces/face1.jpg" class="img-lg"
+                                @if(Auth::check() && Auth::user()->male)
+                                <img src="{{ asset('images/male/' . Auth::user()->male->image) }}" class="img-sm"
                                     alt="profile image">
+                                @else
+                                <img src="{{ asset('dist/images/faces/149071.png') }}" alt="">
+                                @endif
                                 <h6 class="p-3"> </h6>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
+
                             <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                 <i class="ti-settings text-primary"></i>
                                 {{ __('Profile') }}
@@ -133,7 +136,6 @@
                 </button>
             </div>
         </nav>
-        <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_settings-panel.html -->
             <div class="theme-setting-wrapper">
@@ -231,24 +233,16 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('news.index') }}">
+                        <a class="nav-link" href="{{ route('news-page.index') }}">
                             <i class="icon-paper menu-icon"></i>
                             <span class="menu-title">News</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false"
-                            aria-controls="charts">
-                            <i class="icon-bar-graph menu-icon"></i>
-                            <span class="menu-title">Charts</span>
-                            <i class="menu-arrow"></i>
+                        <a class="nav-link" href="{{ route('creation.index') }}">
+                            <i class="icon-archive menu-icon"></i>
+                            <span class="menu-title">Creation</span>
                         </a>
-                        <div class="collapse" id="charts">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false"
@@ -321,42 +315,13 @@
                 <div class="content-wrapper">
                     @yield('content')
                 </div>
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.
-                            <span class="text-primary">Dirbass</span> All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made
-                            with <i class="ti-heart text-danger ml-1"></i></span>
-                    </div>
-                </footer>
+                @include('components.footer')
             </div>
         </div>
     </div>
+    
 
     <script src="{{ asset('dist') }}/vendors/js/vendor.bundle.base.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(document).on('click', '#delete', function (e) {
-                e.preventDefault();
-                var link = $(this).attr("href");
-
-                Swal.fire({
-  title: "Do you want to delete this ??",
-  showDenyButton: true,
-  confirmButtonText: "Delete",
-  denyButtonText: `Cancel`
-}).then((result) => {
-  /* Read more about isConfirmed, isDenied below */
-  if (result.isConfirmed) {
-    Swal.fire("Saved!", "", "success");
-  } else if (result.isDenied) {
-    Swal.fire("Changes are not saved", "", "info");
-  }
-});
-});
-            })
-    </script>
     <script src="{{ asset('dist') }}/vendors/chart/js/Chart.min.js"></script>
     <script src="{{ asset('dist') }}/vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="{{ asset('dist') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
@@ -368,7 +333,6 @@
     <script src="{{ asset('dist') }}/js/todolist.js"></script>
     <script src="{{ asset('dist') }}/js/dashboard.js"></script>
     <script src="{{ asset('dist') }}/js/Chart.roundedBarCharts.js"></script>
-
     <script>
         // <![CDATA[  <-- For SVG support
         if ('WebSocket' in window) {

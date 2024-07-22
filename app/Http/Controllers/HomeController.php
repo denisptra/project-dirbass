@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Creation;
 use App\Models\Home;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,10 @@ class HomeController extends Controller
     public function index()
     {
         // $news = News::orderBy('created_at', 'desc')->get();
+
         $news = News::all();
-        return view('user.page.home.index',compact('news'));
+        $creation = Creation::all();
+        return view('user.page.home.index',compact('news','creation'));
     }
 
     /**

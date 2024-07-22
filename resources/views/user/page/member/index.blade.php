@@ -27,6 +27,8 @@
 </div>
 @endsection
 
+{{-- {{ route('karya.show', $new->id) }} --}}
+
 @section('member')
     <div class="untree_co-section">
         <div class="container">

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Karya;
+use App\Models\Creation;
+// use App\Models\Karya;
 use Illuminate\Http\Request;
 
 class KaryaController extends Controller
@@ -12,7 +13,9 @@ class KaryaController extends Controller
      */
     public function index()
     {
-        return view('user.page.karya.index');
+        $creation = Creation::orderBy('created_at')->first();
+        $creationn = Creation::all();
+        return view('user.page.karya.index', compact('creation', 'creationn'));
     }
 
     /**
@@ -34,32 +37,34 @@ class KaryaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Karya $karya)
+    public function show($id)
     {
-        //
+        $creation = Creation::findOrFail($id);
+        return view('user.page.karya.show', compact('creation'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Karya $karya)
-    {
-        //
-    }
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  */
+    // public function edit(Karya $karya)
+    // {
+    //     //
+    // }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Karya $karya)
-    {
-        //
-    }
+    // /**
+    //  * Update the specified resource in storage.
+    //  */
+    // public function update(Request $request, Karya $karya)
+    // {
+    //     //
+    // }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Karya $karya)
-    {
-        //
-    }
+    // /**
+    //  * Remove the specified resource from storage.
+    //  */
+    // public function destroy(Karya $karya)
+    // {
+    //     //
+    // }
 }

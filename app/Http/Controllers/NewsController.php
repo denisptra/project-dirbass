@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\News;
+use Illuminate\Http\Request;
+
 
 class NewsController extends Controller
 {
@@ -15,6 +16,7 @@ class NewsController extends Controller
         $news = News::orderBy('created_at')->first();
         $newss = News::all();
         return view('user.page.news.index', compact('news', 'newss'));
+
     }
 
     /**
@@ -30,16 +32,22 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+
         //
     }
+
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $news = News::findOrFail($id);
+        return view('user.page.news.show', compact('news'));
+
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -52,16 +60,21 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
     public function update(Request $request, string $id)
     {
         //
+
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
+
         //
     }
 }
+
