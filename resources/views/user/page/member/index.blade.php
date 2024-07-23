@@ -26,7 +26,6 @@
   </div> <!-- /.container -->
 </div>
 @endsection
-
 {{-- {{ route('karya.show', $new->id) }} --}}
 
 @section('member')
