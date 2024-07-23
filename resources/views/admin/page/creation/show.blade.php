@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="text-center">
-                        <img src="{{ asset('storage/' . $creation->image) }}" class="img-fluid my-4"
+                        <img  src="{{ asset('storage/images/creation/' . $creation->image) }}" class="img-fluid my-4"
                             alt="creation image" >
                         <h4>{{ $creation->title }}</h4>
                     </div>

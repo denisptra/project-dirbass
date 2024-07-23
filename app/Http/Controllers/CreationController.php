@@ -22,7 +22,7 @@ class CreationController extends Controller
      */
     public function index()
     {
-        $creations = Creation::with('author')->get();
+        $creations = Creation::orderBy('created_at','desc')->with('author')->get();
         $title = 'Delete News   !';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
@@ -41,36 +41,31 @@ class CreationController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|min:10',
-            'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000',
-            'author_id' => 'required|exists:users,id',
-        ]);
+{
+    $request->validate([
+        'title' => 'required|min:10',
+        'description' => 'required',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000',
+        'author_id' => 'required|exists:users,id',
+    ]);
 
-        // Handle file upload
-        $imagePath = $request->file('image')->store('uploads', 'public');
+    // Save creation
+    $creation = new Creation();
+    $creation->title = $request->title;
+    $creation->description = $request->description;
+    $creation->author_id = $request->author_id; // Set the author_id property
 
-        // Save creation
-        $creation = new Creation();
-        $creation->title = $request->title;
-        $creation->description = $request->description;
-        $creation->author_id = $request->author_id; // Set the author_id property
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-            $image->storeAs('storage/', $imageName);
-
-            $creation->image = $imageName;
-        }
-
-        $creation->save();
-
-        return redirect()->route('creation.index')->with('success', 'Creation added successfully!');
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->storeAs('public/images/creation', $imageName);
+        $creation->image = $imageName;
     }
 
+    $creation->save();
+
+    return redirect()->route('creation.index')->with('success', 'Creation added successfully!');
+}
     /**
      * Display the specified resource.
      */

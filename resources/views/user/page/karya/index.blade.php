@@ -43,12 +43,11 @@
               <div class="col-12 col-sm-6 col-md-6 col-lg-8 mb-4 mb-lg-0">
                 <div class="inicard">
                   @php
-                    $firstkarya = $creationn->first();
+                    $firstkarya = $creation->first();
                   @endphp
-                  {{-- <img src="{{ asset('storage/images/creation/' . $firstkarya->image) }}" alt="Image" class="img-fluid" style="height:500px; width:100%;"> --}}
-                  <img src="https://picsum.photos/200" alt="Image" class="img-fluid" style="height:500px; width:100%;">
+                  <img src="{{ asset('storage/images/creation/' . $firstkarya->image) }}" alt="Image" class="img-fluid" style="height:500px; width:100%;">
                   <div class="inicard-body">
-                    <h3>{{ substr($firstkarya->title, 0, 25) }}...</h3>
+                    <h3 h3>{{ substr($firstkarya->title, 0, 25) }}...</h3>
                     <p class="mb-4">{{ substr($firstkarya->description, 0, 50) }}...</p>
                     <a href="{{ route('karya.show', $firstkarya->id) }}" class="text-primary">Read More</a>
                   </div>
@@ -59,10 +58,9 @@
               <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
                 <div class="inicard">
                   @php
-                    $secondkarya = $creationn->skip(1)->first();
+                    $secondkarya = $creation->skip(1)->first();
                   @endphp
-                  {{-- <img src="{{ asset('storage/images/creation/' . $secondkarya->image) }}" alt="Image" class="img-fluid" style="height:250px; width:100%;"> --}}
-                  <img src="https://picsum.photos/200" alt="Image" class="img-fluid" style="height:250px; width:100%;">
+                  <img src="{{ asset('storage/images/creation/' . $secondkarya->image) }}" alt="Image" class="img-fluid" style="height:250px; width:100%;">
                   <div class="inicard-body">
                     <h3>{{ substr($secondkarya->title, 0, 25) }}...</h3>
                     <p class="mb-4">{{ substr($secondkarya->description, 0, 50) }}...</p>
@@ -75,11 +73,10 @@
             <hr class="mb-5 mt-5">
 
             <div class="row">
-              @foreach ($creationn->skip(2) as $crew)
+              @foreach ($creationn as $crew)
               <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                 <div class="inicard">
-                  {{-- <img src="{{ asset('storage/images/creation/' . $crew->image) }}" alt="Image" class="img-fluid" style="height:200px; width:100%;"> --}}
-                  <img src="https://picsum.photos/200" alt="Image" class="img-fluid" style="height:200px; width:100%;">
+                  <img src="{{ asset('storage/images/creation/' . $crew->image) }}" alt="Image" class="img-fluid" style="height:200px; width:100%;">
                   <div class="inicard-body">
                     <h3>{{ substr($crew->title, 0, 20) }}...</h3>
                     <p class="mb-4">{{ substr($crew->description, 0, 50) }}...</p>

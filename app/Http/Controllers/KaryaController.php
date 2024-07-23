@@ -13,8 +13,8 @@ class KaryaController extends Controller
      */
     public function index()
     {
-        $creation = Creation::orderBy('created_at')->first();
-        $creationn = Creation::all();
+        $creation = Creation::orderBy('created_at', 'desc');
+        $creationn = Creation::latest()->get()->skip(2);
         return view('user.page.karya.index', compact('creation', 'creationn'));
     }
 
