@@ -73,7 +73,7 @@
             <hr class="mb-5 mt-5">
             
             <div class="row">
-              @foreach ($newss->skip(2) as $new)
+              @foreach ($newss->skip(1) as $new)
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   <div class="inicard">
                     <img src="{{ asset('storage/images/news/' . $new->image) }}" alt="Image" class="img-fluid" style="height:200px; width:100%;">

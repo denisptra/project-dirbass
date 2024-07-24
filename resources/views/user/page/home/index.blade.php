@@ -115,8 +115,7 @@
         @foreach ($creation->slice(0,4) as $new)
           <div class="bro col-md-3 mb-4">
             <a href="{{ route('karya.show', $new->id) }}" class="card shadow" style="height: 420px">
-              {{-- <img src="{{ asset('storage/images/creation/' . $new->image) }}" alt="Image" class="card-img-top" style="height:200px; object-fit: cover;"> --}}
-              <img src="https://picsum.photos/200" alt="Image" class="card-img-top" style="height:200px; object-fit: cover;">
+              <img src="{{ asset('storage/images/creation/' . $new->image) }}" alt="Image" class="img-fluid" style="height:200px; width:100%;">
               <div class="card-body">
                 <h3>{{ Str::limit($new->title, 27) }}</h3>
                 <p class="mt2">{{ Str::limit($new->description, 50) }}</p>
