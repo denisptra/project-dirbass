@@ -1,5 +1,6 @@
 @extends('user.master.index')
 
+
 @section('hero')
 <div class="untree_co-hero overlay" style="background-image: url('{{ asset('diet') }}/images/image/hero2.jpg'); height:60vh; min-height:10px;">
   <div class="container">
@@ -71,8 +72,7 @@
             </div>
 
             <hr class="mb-5 mt-5">
-
-            <div class="row">
+<div class="row">
               @foreach ($creationn as $crew)
               <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                 <div class="inicard">

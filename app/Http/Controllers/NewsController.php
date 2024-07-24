@@ -17,7 +17,7 @@ class NewsController extends Controller
     {
 
         $news = News::orderBy('created_at')->first();
-        $newss = News::all();
+        $newss = News::latest()->get()->skip(2);
         return view('user.page.news.index', compact('news', 'newss'));
 
 
