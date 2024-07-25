@@ -67,7 +67,7 @@ class NewsPageController extends Controller
         $news->save();
 
         // Redirect ke halaman indeks news dengan pesan sukses
-        return redirect()->route('news-page.index')->with('sweetalert', 'News Created Successfully!');
+        return redirect()->route('news-page.index')->with('success', 'News Created Successfully!');
     }
 
 

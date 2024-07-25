@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Male;
+use App\Http\Controllers\MaleController;
+
 
 class MemberController extends Controller
 {
@@ -12,7 +16,12 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('user.page.member.index');
+        $member = Male::with('user')->latest()->get();
+
+        $title = 'Delete Data!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+        return view('user.page.member.index', compact('member'));
     }
 
     /**

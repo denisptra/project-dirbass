@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\GalleryPageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KaryaController;
 use App\Http\Controllers\MaleController;
@@ -62,9 +63,9 @@ Route::middleware('auth', 'role:admin,superadmin', 'verified')->group(function (
 
     Route::resource('/news-page', \App\Http\Controllers\NewsPageController::class);
     Route::resource('/creation', \App\Http\Controllers\CreationController::class);
+    Route::resource('/gallery-page', \App\Http\Controllers\GalleryPageController::class);
 
     Route::put('news-page/update-status/{id}', [NewsPageController::class, 'updateStatus'])->name('news-page.updateStatus');
-
 
 });
 
