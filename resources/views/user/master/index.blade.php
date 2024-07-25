@@ -86,7 +86,7 @@
     <div class="sticky-nav js-sticky-header">
       <div class="container position-relative">
         <div class="site-navigation text-center">
-          <a href="index.html" class="logo menu-absolute m-0">
+          <a href="" class="logo menu-absolute m-0">
             <img src="{{ asset('diet') }}/images/image/logo-putih.png" alt="" style="width: 50px; margin-top:-5px">
           </a>
 

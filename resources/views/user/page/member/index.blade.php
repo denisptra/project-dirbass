@@ -33,42 +33,20 @@
         <div class="container">
             <h2 class="line-bottom text-center mb-5" style="margin-top: -2%">Member</h2>
             <div class="d-flex flex-wrap justify-content-center">
-                <div class="col-md-6 col-lg-3 mb-4">
-                  <div class="card shadow"  style="border-radius: 10px;">
-                    <img src="https://i.pinimg.com/236x/2c/9f/dd/2c9fddce9c01177893ff3ec19b5f09c8.jpg" class="card-img-top" alt="..." style="height: 260px; border-radius: 10px 10px 0 0;">
-                    <div class="card-body">
-                      <h6 class="card-title font-weight-bold">Ahmad khasim ali</h6>
-                      <small class="card-text">Bandung</small>
-                    </div>
+              <!-- Card Anggota -->
+              @foreach ($member as $item)    
+              <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow" style="border-radius: 10px;">
+                  <img src="{{ asset('images/male/' . $item->image) }}" class="card-img-top" alt="..." style="height: 300px; border-radius: 10px 10px 0 0;">
+                  <div class="card-body">
+                    <h5 class="card-title font-weight-bold">{{ $item->user->name }}</h5>
+                    <p class="card-text">{{ $item->city }}</p>
+                    <p class="card-text">{{ $item->motivation }}</p>
+                    <button class="btn btn-primary">Lihat Profil</button>
                   </div>
                 </div>
-                <div class="col-md-6 col-lg-3 mb-4">
-                  <div class="card shadow" style="border-radius: 10px;">
-                    <img src="https://i.pinimg.com/736x/29/69/86/296986bcef7b734a06510221f96b26e7.jpg" class="card-img-top" alt="..." style="height: 260px; border-radius: 10px 10px 0 0;">
-                    <div class="card-body">
-                      <h6 class="card-title font-weight-bold">Ahmad khasim ali</h6>
-                      <small class="card-text">Bandung</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4">
-                  <div class="card shadow" style="border-radius: 10px;">
-                    <img src="https://i.pinimg.com/736x/01/b5/db/01b5dbf4eb3fbcee821d5f6367a68140.jpg" class="card-img-top" alt="..." style="height: 260px; border-radius: 10px 10px 0 0;">
-                    <div class="card-body">
-                      <h6 class="card-title font-weight-bold">Ahmad khasim ali</h6>
-                      <small class="card-text">Bandung</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4">
-                  <div class="card shadow" style="border-radius: 10px;">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkALMVn1CW_3l1gcVY25Xu--1TJMwtW5R0aEUbMy_T4XepJQ8ymtoP-ZFI5tEXxm4Ah1o&usqp=CAU" class="card-img-top" alt="..." style="height: 260px; border-radius: 10px 10px 0 0;">
-                    <div class="card-body">
-                      <h6 class="card-title font-weight-bold">Ahmad khasim ali</h6>
-                      <small class="card-text">Bandung</small>
-                    </div>
-                  </div>
-                </div>
+              </div>
+              @endforeach
             </div>
         </div>
     </div> 

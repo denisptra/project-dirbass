@@ -12,7 +12,8 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        return view('user.page.gallery.index');
+        $gallery = Gallery::latest()->get();
+        return view('user.page.gallery.index', compact('gallery'));
     }
 
     /**

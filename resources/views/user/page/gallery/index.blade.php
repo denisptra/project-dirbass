@@ -32,67 +32,15 @@
     <div class="container">
         <h2 class="line-bottom text-center mb-5" style="margin-top: -2%">Image</h2>
       <div class="row">
+      
+        @foreach ($gallery as $item)
         <div class="col-md-6 col-lg-4 item">
-
-          <a href="{{ asset('diet') }}/images/image/hero3.jpg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="0">
+          <a href="{{ asset('storage/images/gallery/' . $item->image) }}" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="0">
             <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/image/hero3.jpg">
-          </a>
-
-          <a href="{{ asset('diet') }}/images/img_1.jpg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="0">
-            <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/img_1.jpg">
-          </a>
-          <a href="{{ asset('diet') }}/images/img_2.jpg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="100">
-            <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/img_2.jpg">
-          </a>
-          <a href="{{ asset('diet') }}/images/img_3.jpg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="200">
-            <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/img_3.jpg">
+            <img class="img-fluid"  src="{{ asset('storage/images/gallery/' . $item->image) }}" style="height: 250px">
           </a>
         </div>
-        <div class="col-md-6 col-lg-4 item">
-          <a href="{{ asset('diet') }}/images/image/nikko.jpeg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="0">
-            <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/image/nikko.jpeg">
-          </a>
-          <a href="{{ asset('diet') }}/images/img_4.jpg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="0">
-            <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/img_4.jpg">
-          </a>
-          <a href="{{ asset('diet') }}/images/img_5.jpg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="100">
-            <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/img_5.jpg">
-          </a>
-          <a href="{{ asset('diet') }}/images/img_8.jpg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="200">
-            <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/img_8.jpg">
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-4 item">
-          <a href="{{ asset('diet') }}/images/img-school-2-min.jpg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="0">
-            <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/img-school-2-min.jpg">
-          </a>
-          <a href="{{ asset('diet') }}/images/img_9.jpg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="0">
-            <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/img_9.jpg">
-          </a>
-          <a href="{{ asset('diet') }}/images/img_6.jpg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="100">
-            <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/img_6.jpg">
-          </a>
-          <a href="{{ asset('diet') }}/images/img_7.jpg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="200">
-            <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/img_7.jpg">
-          </a>
-          <a href="{{ asset('diet') }}/images/img_10.jpg" class="item-wrap fancybox mb-4" data-fancybox="gal" data-aos="fade-up" data-aos-delay="0">
-            <span class="icon-search2"></span>
-            <img class="img-fluid" src="{{ asset('diet') }}/images/img_10.jpg">
-          </a>
-
-        </div>
+        @endforeach
       </div>
     </div>
 </div> 
