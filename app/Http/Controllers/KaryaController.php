@@ -17,7 +17,6 @@ class KaryaController extends Controller
         $creationn = Creation::latest()->get()->skip(2);
         return view('user.page.karya.index', compact('creation', 'creationn'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -41,7 +40,6 @@ class KaryaController extends Controller
     {
         $creation = Creation::findOrFail($id);
         return view('user.page.karya.show', compact('creation'));
-
     }
 
     // /**

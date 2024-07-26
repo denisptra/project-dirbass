@@ -1,5 +1,6 @@
 @extends('user.master.index')
 
+
 @section('hero')
 <div class="untree_co-hero overlay" style="background-image: url('{{ asset('diet') }}/images/image/hero2.jpg'); height:60vh; min-height:10px;">
   <div class="container">
@@ -16,7 +17,7 @@
               </ol>
             </nav>
             <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100" style="margin-top: -200px">Creation</h1>
-            <p class="mb-4 text-white" data-aos="fade-up" data-aos-delay="200" style="margin-top: -20px">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio, aut?</p>
+            <p class="mb-4 text-white" data-aos="fade-up" data-aos-delay="200" style="margin-top: -20px">"Exploring the Beauty and Uniqueness of Works of Art"</p>
           </div>
         </div>
       </div>
@@ -30,7 +31,7 @@
   <h2 class="line-bottom text-center mb-4" style="margin-top: -2%">Creation</h2>
   <div class="row justify-content-center mb-5">
     <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, error?</p>
+      <p>Welcome to a place where creativity and imagination blend into one. Here, each work of art is created with dedication and skill, offering a stunning and immersive visual experience.  </p>
     </div>
   </div>
   <div class="container" style="border-radius: 10px">
@@ -71,8 +72,7 @@
             </div>
 
             <hr class="mb-5 mt-5">
-
-            <div class="row">
+<div class="row">
               @foreach ($creationn as $crew)
               <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                 <div class="inicard">
