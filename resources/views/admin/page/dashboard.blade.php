@@ -94,24 +94,6 @@
                 <h4 class="card-title">To Do Lists</h4>
                 <div class="list-wrapper pt-2">
                     <ul class="d-flex flex-column-reverse todo-list todo-list-custom" id="todo-list">
-                        <li>
-                            <div class="form-check form-check-flat">
-                                <label class="form-check-label">
-                                    <input class="checkbox" type="checkbox">
-                                    Berjuang Juga Butuh Makan
-                                    <i class="input-helper"></i></label>
-                            </div>
-                            <i class="remove ti-close"></i>
-                        </li>
-                        <li>
-                            <div class="form-check form-check-flat">
-                                <label class="form-check-label">
-                                    <input class="checkbox" type="checkbox">
-                                    Aku Tidur Dulu ya
-                                    <i class="input-helper"></i></label>
-                            </div>
-                            <i class="remove ti-close"></i>
-                        </li>
                     </ul>
                 </div>
 
@@ -148,6 +130,80 @@
 
     // Update the date every 1 second
     setInterval(updateDate, 1000);
+
+    // Ambil elemen todo-list dan new-task-input
+    const todoList = document.getElementById('todo-list');
+    const newTaskInput = document.getElementById('new-task-input');
+    const addTaskBtn = document.getElementById('add-task-btn');
+
+    // Fungsi untuk menambahkan task baru
+    function addTask() {
+        const newTask = newTaskInput.value.trim();
+        if (newTask) {
+            // Buat elemen li baru
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <div class="form-check form-check-flat">
+                    <label class="form-check-label">
+                        <input class="checkbox" type="checkbox">
+                        ${newTask}
+                        <i class="input-helper"></i>
+                    </label>
+                </div>
+                <i class="remove ti-close"></i>
+            `;
+            // Tambahkan event listener untuk menghapus task
+            li.querySelector('.remove').addEventListener('click', () => {
+                li.remove();
+                saveTasks();
+            });
+            // Tambahkan task baru ke todo-list
+            todoList.appendChild(li);
+            // Kosongkan input field
+            newTaskInput.value = '';
+            // Simpan tasks ke LocalStorage
+            saveTasks();
+        }
+    }
+
+    // Fungsi untuk menyimpan tasks ke LocalStorage
+    function saveTasks() {
+        const tasks = [];
+        todoList.querySelectorAll('li').forEach((li) => {
+            tasks.push(li.querySelector('.form-check-label').textContent.trim());
+        });
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    // Fungsi untuk memuat tasks dari LocalStorage
+    function loadTasks() {
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        tasks.forEach((task) => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <div class="form-check form-check-flat">
+                    <label class="form-check-label">
+                        <input class="checkbox" type="checkbox">
+                        ${task}
+                        <i class="input-helper"></i>
+                    </label>
+                </div>
+                <i class="remove ti-close"></i>
+            `;
+            // Tambahkan event listener untuk menghapus task
+            li.querySelector('.remove').addEventListener('click', () => {
+                li.remove();
+                saveTasks();
+            });
+            todoList.appendChild(li);
+        });
+    }
+
+    // Tambahkan event listener untuk menambahkan task baru
+    addTaskBtn.addEventListener('click', addTask);
+
+    // Muat tasks dari LocalStorage
+    loadTasks();
 
 </script>
 

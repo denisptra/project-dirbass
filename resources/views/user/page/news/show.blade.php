@@ -45,7 +45,8 @@
               <!-- First Card -->
               <div class="col-12 col-sm-6 col-md-6 col-lg-12 mb-4 mb-lg-0">
                 <div class="inicard">
-                  <img src="{{ asset('storage/images/news/' . $news->image) }}" alt="Image" class="img-fluid" style="height:500px; width:100%;">
+                  <img src="{{ asset('storage/images/news/'. $news->image) }}" alt="Image" class="img-fluid"
+                  style="max-height: 500px; width: 100%; object-fit: cover; object-position: center; border-radius: 5px;">
                   <div class="inicard-body">
                     <h3 class="mt-4">{{ $news->title }}</h3>
                     <p class="mt-4">{{ $news->content }}</p>

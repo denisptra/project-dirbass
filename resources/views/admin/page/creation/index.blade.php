@@ -27,7 +27,7 @@
                         @foreach($creations as $creation)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td><img src="{{ asset('storage/images/creation/' . $creation->image) }}" alt="" width="100"></td>
+                            <td><img src="{{ asset('storage/' . $creation->image) }}" alt="" width="100"></td>
                             <td>{{ substr($creation->title, 0, 20) }}...</td>
                             <td>{{ substr($creation->description, 0, 40) }}...</td>
                             <td>{{ $creation->author ? $creation->author->name : 'No Author' }}</td> <!-- Menampilkan nama author -->
