@@ -17,8 +17,8 @@ class HomeController extends Controller
     {
         // $news = News::orderBy('created_at', 'desc')->get();
 
-        $news = News::all();
-        $creation = Creation::all();
+        $news = News::latest()->get();
+        $creation = Creation::latest()->get();
         return view('user.page.home.index',compact('news','creation'));
     }
 

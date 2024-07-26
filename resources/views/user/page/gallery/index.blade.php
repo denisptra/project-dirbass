@@ -15,9 +15,8 @@
                 </ol>
             </nav>
             <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100" style="margin-top: -200px">Gallery</h1>
-            <p class="mb-4 text-white" data-aos="fade-up" data-aos-delay="200" style="margin-top: -20px">Lorem ipsum dolor sit, amet 
-                consectetur adipisicing 
-                elit. Distinctio, aut?
+            <p class="mb-4 text-white" data-aos="fade-up" data-aos-delay="200" style="margin-top: -20px">
+              Precious Moments in One Place
             </p>
           </div>
         </div>

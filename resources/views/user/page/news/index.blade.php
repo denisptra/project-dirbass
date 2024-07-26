@@ -16,7 +16,7 @@
               </ol>
             </nav>
             <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100" style="margin-top: -200px">News</h1>
-            <p class="mb-4 text-white" data-aos="fade-up" data-aos-delay="200" style="margin-top: -20px">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio, aut?</p>
+            <p class="mb-4 text-white" data-aos="fade-up" data-aos-delay="200" style="margin-top: -20px">"Technological Innovations That Changed the World"</p>
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
   <h2 class="line-bottom text-center mb-4" style="margin-top: -2%">News</h2>
   <div class="row justify-content-center mb-5">
     <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, error?</p>
+      <p>Stay connected with us via our website and social media channels to never miss important news and announcements. Together, let's create valuable moments in the activities we present.</p>
     </div>
   </div>
   <div class="container" style="border-radius: 10px">
