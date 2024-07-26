@@ -50,7 +50,7 @@
               <!-- First Card -->
               <div class="col-12 col-sm-6 col-md-6 col-lg-12 mb-4 mb-lg-0">
                 <div class="inicard">
-                  <img src="{{ asset('storage/images/creation/'. $creation->image) }}" alt="Image" class="img-fluid"
+                  <img src="{{ asset('storage/' . $creation->image) }}" alt="Image" class="img-fluid"
                     style="max-height: 500px; width: 100%; object-fit: cover; object-position: center; border-radius: 5px;">
                   <div class="inicard-body">
                     <h3 class="mt-4">{{ $creation->title }}</h3>

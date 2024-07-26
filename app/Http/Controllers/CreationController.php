@@ -41,31 +41,31 @@ class CreationController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'title' => 'required|min:10',
-        'description' => 'required',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000',
-        'author_id' => 'required|exists:users,id',
-    ]);
-
-    // Save creation
-    $creation = new Creation();
-    $creation->title = $request->title;
-    $creation->description = $request->description;
-    $creation->author_id = $request->author_id; // Set the author_id property
-
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->storeAs('public/images/creation', $imageName);
-        $creation->image = $imageName;
+    {
+        $request->validate([
+            'title' => 'required|min:10',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000',
+            'author_id' => 'required|exists:users,id',
+        ]);
+    
+        // Save creation
+        $creation = new Creation();
+        $creation->title = $request->title;
+        $creation->description = $request->description;
+        $creation->author_id = $request->author_id; // Set the author_id property
+    
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images/creation', $imageName);
+            $creation->image = 'images/creation/' . $imageName; // Update the image attribute
+        }
+    
+        $creation->save();
+    
+        return redirect()->route('creation.index')->with('success', 'Creation added successfully!');
     }
-
-    $creation->save();
-
-    return redirect()->route('creation.index')->with('success', 'Creation added successfully!');
-}
     /**
      * Display the specified resource.
      */
