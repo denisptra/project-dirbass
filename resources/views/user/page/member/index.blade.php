@@ -24,7 +24,6 @@
   </div> <!-- /.container -->
 </div>
 @endsection
-{{-- {{ route('karya.show', $new->id) }} --}}
 
 @section('member')
     <div class="untree_co-section">
@@ -34,13 +33,13 @@
               <!-- Card Anggota -->
               @foreach ($member as $item)    
               <div class="col-md-6 col-lg-3 mb-4">
-                <div class="card shadow" style="border-radius: 10px;">
+                <div class="card border-0 shadow" style="border-radius: 10px;">
                   <img src="{{ asset('images/male/' . $item->image) }}" class="card-img-top" alt="..." style="height: 300px; border-radius: 10px 10px 0 0;">
                   <div class="card-body">
                     <h5 class="card-title font-weight-bold">{{ $item->user->name }}</h5>
                     <p class="card-text">{{ $item->city }}</p>
                     <p class="card-text">{{ $item->motivation }}</p>
-                    <button class="btn btn-primary">Lihat Profil</button>
+                   <a href="{{ route('member.show', $item->id) }}"> <button class="btn btn-primary">Lihat Profil</button></a>
                   </div>
                 </div>
               </div>

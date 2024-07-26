@@ -45,7 +45,8 @@
                   @php
                     $firstNews = $news->latest()->first();
                   @endphp
-                  <img src="{{ asset('storage/images/news/' . $firstNews->image) }}" alt="Image" class="img-fluid" style="height:500px; width:100%;">
+                  <img src="{{ asset('storage/images/news/' . $firstNews->image) }}" alt="Image" class="img-fluid"
+                  style="max-height: 500px; width: 100%; object-fit: cover; object-position: center; border-radius: 5px;">
                   <div class="inicard-body">
                     <h3>{{ substr($firstNews->title, 0, 25) }}...</h3>
                     <p class="mb-4">{{ substr($firstNews->content, 0, 50) }}...</p>
@@ -60,7 +61,8 @@
                   @php
                     $secondNews = $news->latest()->skip(1)->first();
                   @endphp
-                  <img src="{{ asset('storage/images/news/' . $secondNews->image) }}" alt="Image" class="img-fluid" style="height:250px; width:100%;">
+                  <img src="{{ asset('storage/images/news/'. $secondNews->image) }}" alt="Image" class="img-fluid"
+                  style="max-height: 250px; width: 100%; object-fit: cover; object-position: center; border-radius: 5px;">
                   <div class="inicard-body">
                     <h3>{{ substr($secondNews->title, 0, 25) }}...</h3>
                     <p class="mb-4">{{ substr($secondNews->content, 0, 50) }}...</p>
@@ -76,7 +78,9 @@
               @foreach ($newss as $new)
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   <div class="inicard">
-                    <img src="{{ asset('storage/images/news/' . $new->image) }}" alt="Image" class="img-fluid" style="height:200px; width:100%;">
+                    {{-- <img src="{{ asset('storage/images/news/' . $new->image) }}" alt="Image" class="img-fluid" style="height:200px; width:100%;"> --}}
+                    <img src="{{ asset('storage/images/news/'. $new->image) }}" alt="Image" class="img-fluid"
+                    style="height: 200px; width: 100%; object-fit: cover; object-position: center; border-radius: 5px; margin: 0 auto;">
                     <div class="inicard-body">
                       <h3>{{ substr($new->title, 0, 20) }}...</h3>
                       <p class="mb-4">{{ substr($new->content, 0, 50) }}...</p>

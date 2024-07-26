@@ -2,7 +2,8 @@
 
 
 @section('hero')
-<div class="untree_co-hero overlay" style="background-image: url('{{ asset('diet') }}/images/image/hero2.jpg'); height:60vh; min-height:10px;">
+<div class="untree_co-hero overlay"
+  style="background-image: url('{{ asset('diet') }}/images/image/hero2.jpg'); height:60vh; min-height:10px;">
   <div class="container">
     <div class="row align-items-center justify-content-center">
       <div class="col-12">
@@ -16,8 +17,10 @@
                 <li class="breadcrumb-item active" aria-current="page" style="color: rgb(108, 108, 137);">Creation</li>
               </ol>
             </nav>
-            <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100" style="margin-top: -200px">Creation</h1>
-            <p class="mb-4 text-white" data-aos="fade-up" data-aos-delay="200" style="margin-top: -20px">"Exploring the Beauty and Uniqueness of Works of Art"</p>
+            <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100" style="margin-top: -200px">
+              Creation</h1>
+            <p class="mb-4 text-white" data-aos="fade-up" data-aos-delay="200" style="margin-top: -20px">"Exploring the
+              Beauty and Uniqueness of Works of Art"</p>
           </div>
         </div>
       </div>
@@ -31,7 +34,8 @@
   <h2 class="line-bottom text-center mb-4" style="margin-top: -2%">Creation</h2>
   <div class="row justify-content-center mb-5">
     <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-      <p>Welcome to a place where creativity and imagination blend into one. Here, each work of art is created with dedication and skill, offering a stunning and immersive visual experience.  </p>
+      <p>Welcome to a place where creativity and imagination blend into one. Here, each work of art is created with
+        dedication and skill, offering a stunning and immersive visual experience. </p>
     </div>
   </div>
   <div class="container" style="border-radius: 10px">
@@ -44,9 +48,10 @@
               <div class="col-12 col-sm-6 col-md-6 col-lg-8 mb-4 mb-lg-0">
                 <div class="inicard">
                   @php
-                    $firstkarya = $creation->first();
+                  $firstkarya = $creation->first();
                   @endphp
-                  <img src="{{ asset('storage/images/creation/' . $firstkarya->image) }}" alt="Image" class="img-fluid" style="height:500px; width:100%;">
+                  <img src="{{ asset('storage/' . $firstkarya->image) }}" alt="Image" class="img-fluid"
+                    style="max-height: 500px; width: 100%; object-fit: cover; object-position: center; border-radius: 5px;">
                   <div class="inicard-body">
                     <h3 h3>{{ substr($firstkarya->title, 0, 25) }}...</h3>
                     <p class="mb-4">{{ substr($firstkarya->description, 0, 50) }}...</p>
@@ -59,9 +64,10 @@
               <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
                 <div class="inicard">
                   @php
-                    $secondkarya = $creation->skip(1)->first();
+                  $secondkarya = $creation->skip(1)->first();
                   @endphp
-                  <img src="{{ asset('storage/images/creation/' . $secondkarya->image) }}" alt="Image" class="img-fluid" style="height:250px; width:100%;">
+                  <img src="{{ asset('storage/' . $secondkarya->image) }}" alt="Image" class="img-fluid"
+                    style="max-height: 250px; width: 100%; object-fit: cover; object-position: center; border-radius: 5px;">
                   <div class="inicard-body">
                     <h3>{{ substr($secondkarya->title, 0, 25) }}...</h3>
                     <p class="mb-4">{{ substr($secondkarya->description, 0, 50) }}...</p>
@@ -72,11 +78,12 @@
             </div>
 
             <hr class="mb-5 mt-5">
-<div class="row">
+            <div class="row">
               @foreach ($creationn as $crew)
               <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                 <div class="inicard">
-                  <img src="{{ asset('storage/images/creation/' . $crew->image) }}" alt="Image" class="img-fluid" style="height:200px; width:100%;">
+                  <img src="{{ asset('storage/' . $crew->image) }}" alt="Image" class="img-fluid"
+                    style="height: 200px; width: 100%; object-fit: cover; object-position: center; border-radius: 5px; margin: 0 auto;">
                   <div class="inicard-body">
                     <h3>{{ substr($crew->title, 0, 20) }}...</h3>
                     <p class="mb-4">{{ substr($crew->description, 0, 50) }}...</p>

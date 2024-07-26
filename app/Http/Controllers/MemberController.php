@@ -17,7 +17,6 @@ class MemberController extends Controller
     public function index()
     {
         $member = Male::with('user')->latest()->get();
-
         $title = 'Delete Data!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
@@ -45,7 +44,7 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        $member = Member::findOrFail($id);
+        $member = Male::findOrFail($id);
         return view('user.page.member.show', compact('member'));
 
     }
